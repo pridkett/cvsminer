@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<mapping>
+  <person>
+    <cvsname project="gnome/%">trowbrds</cvsname>
+    <firstname>Jon</firstname>
+    <lastname>Trowbridge</lastname>
+    <email>david.trowbridge@colorado.edu</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">hansp</cvsname>
+  </person>
+  <person>
+    <cvsname project="gnome/%">pchen</cvsname>
+  </person>
+  <person>
+    <cvsname project="gnome/%">dobey</cvsname>
+    <firstname>Rodney</firstname>
+    <lastname>Dawes</lastname>
+    <ircnick network="irc.gimp.org">dobey</ircnick>
+    <email>dobey@ximian.com</email>
+    <email>dobey@novell.com</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">rodrigo</cvsname>
+    <firstname>Rodrigo</firstname>
+    <lastname>Moya</lastname>
+    <ircnick network="irc.gimp.org">rodrigo</ircnick>
+    <email>rodrigo@ximian.com</email>
+    <email>rodrigo@novell.com</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">siva</cvsname>
+  </person>
+  <person>
+    <cvsname project="gnome/%">kharish</cvsname>
+    <firstname>Harish</firstname>
+    <lastname>Krishnaswamy</lastname>
+    <email>kharish@novell.com</email>
+    <ircnick>kharish@novell.com</ircnick>
+  </person>
+  <person>
+    <cvsname project="gnome/%">jpr</cvsname>
+    <firstname>JP</firstname>
+    <lastname>Rosevear</lastname>
+    <email>jpr@ximian.com</email>
+    <email>jpr@novell.com</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">pvanhoof</cvsname>
+    <firstname>Phillip</firstname>
+    <lastname>Van Hoof</lastname>
+    <email>pvanhoof@gnome.org</email>
+    <email>me@pvanhoof.be</email>
+    <email>spamfrommailing@pvanhoof.be</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">haip</cvsname>
+  </person>
+  <person>
+    <cvsname project="gnome/%">zucchi</cvsname>
+    <firstname>Michael</firstname>
+    <lastname>Zucchi</lastname>
+    <ircnick network="irc.gimp.org">zucchi</ircnick>
+    <email>notzed@ximian.com</email>
+    <email>notzed@novell.com</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">rodo</cvsname>
+    <firstname>Radek</firstname>
+    <lastname>Doulik</lastname>
+    <email>rodo@novell.com</email>
+    <email>rodo@ximian.com</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">fejj</cvsname>
+    <firstname>Jeffrey</firstname>
+    <lastname>Steadfast</lastname>
+    <ircnick network="irc.gimp.org">fejj</ircnick>
+    <email>fejj@ximian.com</email>
+    <email>fejj@novell.com</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">jvivek</cvsname>
+    <firstname>Vivek</firstname>
+    <lastname>Jain</lastname>
+    <email>jvivek@novell.com</email>
+  </person>
+  <person>
+    <cvsname project="gnome/%">saps</cvsname>
+  </person>
+</mapping>

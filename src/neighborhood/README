@@ -1,0 +1,8 @@
+This directory contains the statistics scripts for "There Goes the
+Neighborhood".
+
+* mlm.sas: tests the three main hypotheses of the paper
+
+* liwcProcessing.r: R script that does all of the analysis necessary
+  for the data from LIWC.  Most of this data really isn't that
+  interesting, but whatever.

@@ -1,0 +1,1574 @@
+2008-11-17  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/eclipse_dashboard_nets/eclipse_nets.R: updated to support
+	analysis of the GNOME data set.  It's good enough for now, but not
+	quite 100% perfect.
+	
+	* src/eclipse_dashboard_analysis.py (DashboardNetworkMaker): added support to
+	filter the overall project set
+
+2008-11-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/eclipse_dashboard_analysis.py: now properly loads in GNOME data too
+	* src/dbobjects.py (ProjectInvolvement): added linesRemoved and linesDelta
+	* sql/person.sql (user_corporation_project): added lines_removed and lines_delta
+
+2008-11-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/eclipse_dashboard_analysis.py: more comments, work on making it
+	a bit more generic so it will work with GNOME data too
+	* src/dbobjects.py (MasterProject): added in code to link to the parent project if necessary.
+
+2008-11-03  Patirck Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/baseball/boto/awssensitivity.R: updated and added a few comments into the
+	code about what I did.
+
+2008-10-20  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/baseball/congruence.R: lots of periodic changes update.
+	Renamed many of the columns to have them make a lot more sense.
+
+2008-08-11  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/bugs/buglinker.py: script to parse CVS commits looking for bug references
+
+	* sql/bugzilla_additional.sql: added in bz_bugs_cvs_commit to link
+	bz_bugs to cvs_commits
+	* sql/bugzilla.sql: added in bz_bugs_original_id_idx to index original ids
+	on bz_bugs
+
+2008-07-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/eclipse_dashboard_nets/eclipse_nets.R: R stats file for analyzing network data
+
+2008-06-24  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/eclipse_dashboard_analysis.py: new file to analyze data obtained from
+
+2008-06-23  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/eclipse_dashboard.py: pulls down contribution information from eclipse.org
+
+	* src/baseball/boto/unpacker.py: script to intelligently unpack all of the data
+
+2008-06-19  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/baseball/boto: updated so it works now.  AWESOME!
+
+2008-06-18  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/baseball/boto: new scripts to farm R processing out to amazon EC2
+
+2008-06-10  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/bugs/eclipseImporter.py: works fine now
+	* src/bugs/pgtools.py: helper script for importing eclipse data
+
+2008-06-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/bugs/eclipseImporter.py: fixed bug with null columns
+
+	* src/bugs/eclipseImporter.py: now imports up to longdescs
+	* sql/bugzilla.sql: lots of changes to make it work with multiple datasets
+
+2008-05-04  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+    * sql/bugzilla.sql (bz_bugs): creating a new id column instead of the old bug_id column.  Necessary for loading in multiple bugzilla data segments
+    
+2008-04-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/dbobjects.py (raw_execute): added new function for database commands
+	* src/baseball/bugdumper.py (dump_project_bugs): turn off
+	sequential scanning to get a performance boost
+	
+	* src/baseball/bugdumper.py (process_bug): better work to ensure
+	catchings bugs and commits
+
+	* src/baseball/weightednets.py: new functionality to dump bug
+	networks
+	* src/baseball/weighted.R: massive changes to make it functional
+
+2008-04-11  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+    
+    * src/baseball/weightednets.py: added file_id and person_id to node names.  Needed
+    for the calculation within R
+    
+    * src/baseball/weighted.R: initial revision of file 
+
+    * src/baseball/netbreaker.py: script to break apart DynetML output from weightednets
+    * src/baseball/netbreaker.ini: config file for netbreaker
+    
+2008-04-10  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+    * src/mail/loadMailLists.py: many changes to improve unicode support
+    
+    * sql/stored_procedures.sql: new file with some helpful stored procedures for
+    dealing with mailing list issues.
+    
+    * src/mail/loadMailLists.py: gave the code a much needed update so it actually
+    imports all of the data.
+    * src/baseball/weightednets.py: unicode patches
+    
+2008-04-09  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+    
+    * sql/bugzilla_additional.sql: added bz_bugs_product_id_idx
+    * src/baseball/weightednets.py: seems to sorta work now
+    * src/baseball/weightednets.ini: added lots of new projects to the listing
+    
+2008-04-08  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+    
+    * src/baseball/weightednets.py: commit file for weighted network analysis
+    * src/baseball/weightednets.ini: commit ini file for weighted network analysis
+        
+    * src/dbobjects.py (raw_query): added new raw_query function to make it easier
+    to use raw SQL.
+    * src/dbobjects.py: BREAKER merged in all of the stuff from person objects.
+    * src/personobjects.py: removed file  
+    
+2008-04-07  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+    * src/baseball/congruence.R: finally commited scripts from STC2008
+
+    * sql/drop_eclipse.sql: commented out lines that aren't generally applicable
+    
+    * src/cvsimporter.py: more cleanup on man errors, handle better now
+    
+2008-04-06  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+    * src/bugzillobjects.py: replace StringCol with UnicodeCol
+    * src/personobjects.py: replace StringCol with UnicodeCol
+    
+	* src/cvsimporter.py (get_patch_file, PatchSet.add_line, PatchSet.remove_line):
+	deal with silly edge case where csvps replaces "&" with "+++ -"
+
+	* src/cvsimporter.py: check if directory before importing
+	* src/cvsimporter_eclipse.py: check if directory before importing
+
+2008-04-05  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/drop_eclipse.py: pasted in real instructions at top
+	* src/cvsimporter.py (process_patchset): deal with very rare case where a patch
+	contains a line of text that looks like the divider between patches    
+	
+2008-04-04  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/cvsimporter.py (import_module): added cache flag to have it check for
+	dumped files
+	* src/cvsimprorter_eclipse.py: added --usecache option to load from a previously
+	run file.  Utilize transactions.   
+	* src/dbobjects.py (get_connection): useful for transactions 
+	
+2008-04-03  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+    * src/dbobjects.py: changed StringCol into UnicodeCol
+    * src/cvsimporter.py: unicode support
+    * src/cvsimporter_eclipse.py: unicode support
+        
+    * src/dbobjects.py (CVSCommit): added createDate
+    * sql/cvsminer.sql: added indexes to file_cvs_commit_tag, added create_date to cvs_commit 
+    * sql/drop_eclipse.sql: a rather slow but safe script to drop everything related to eclipse
+    
+2008-04-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+    * src/cvsimporter_eclipse.py (process_project): fix boneheaded error where tags weren't actually being assigned to commits
+    
+    * src/web/web.py: refactor setConnection->set_connection
+    * src/mail/loadMailLists.py: refactor getSQLHub->get_sql_hub
+    * src/dbobjects.py: many changes to improve clarity of code and get a better score on pylint
+    * src/cvsimporter.sql (FileDelta.__repr__): now display state also
+    * sql/cvsminer.sql: added branch to cvs_commit, community_id to users
+    * src/dbobjects.py: added branch to CVSCommit, community to User
+    
+    * src/cvsimporter.py: cleaned up code some more, seems more robust
+    * src/cvsimporter_tests.py: basic test suite for cvsimporter
+
+2008-04-01  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/cvsimporter.py: initial draft of new tool to import CVS archives through
+	cvsps
+	* src/cvsimporter_tests.py: skeleton of tests for cvsimporter.py
+	
+2008-02-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/neighborhood/mlm.sas: updated to add in new columns:
+	periodBugComments, periodDevBugComments, periodMailMessages, periodDevMailMessages
+	* src/network/guess/clustering/DeveloperCache.py (defaultMapping):
+	fixed the default mapping to deal with the new columns of
+	daysActive, firstActive, and lastActive
+	* src/network/guess/clustering/timeProcessing.py
+	(DataElement.calculate_period_developer_activity): now counts the
+	number of messages posted to that projects mailing lists during
+	the period and also counts the number of messages posted by
+	developers across all mailing lists during that period.  Also,
+	counts the number of bug comments for the project and the number
+	of bug comments by the developers of the project.
+
+2008-01-31  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/runall.sh: idiot proof some
+	messages
+	* src/network/guess/clustering/timeProcessing.py: add in more
+	period based stats for each projcet
+
+2008-01-28  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* sql/bugzilla_additional.sql: added id column to bz_profiles_person
+	* src/bugzillaobjects: added PersonProfile class
+
+2007-12-21  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/neighborhood/mlm.sas: updates for new fields related to bugs
+	and email messages.
+	* src/network/guess/clustering/timeProcessing.py: updates for new
+	fields related to bugs and email messages
+
+	* src/network/guess/clustering/profileImport.py: file was renamed
+	to src/network/guess/clustering/DeveloperCache.py 
+
+	* src/network/guess/clustering/profileImport.py: simple python
+	script to read in the profiles.csv file and put it into a useful
+	keyed dictionary
+
+2007-11-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/neighborhood/mlm.sas: various updates to clean up code and
+	eliminate stuff that isn't used anymore.
+
+2007-10-11  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/neighborhood/mlm.sas: added in some new analysis to look at
+	the commercial users impact on continuing volunteer developers.
+	Started out with broad strokes, then broke up by class, finally
+	added in a stability term.
+
+	* data/clustering/neighborhood.csv: updated data file with new fields 
+
+	* src/neighborhood/mlm.sas: comments about fields, read in fields
+	of continuing number of users.
+
+	* src/personobjects.py: nuked the RecordSource object as all it
+	did was cause issues
+
+	* src/network/guess/clustering/timeProcessing.py: added new code
+	to calculate the number of continuing users in each category.
+	Cleaned up code to make it work under newer versions of
+	sqlobject.  Bad assumptions make for bad programs.
+
+2007-10-05  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* data/liwc/neighborhoodOnlyKnown.csv: copy of the data from "There
+	Goes the Neighborhood" email messages
+	* src/neighborhood/liwcProcessing.r: moved script to unified
+	location for all analysis
+	* neighborhood/*: stats scripts for "There Goes the Neighborhood"
+	have been moved here.
+	
+2007-10-04  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* data/clustering/all-none.csv: similar to all-concor, but without
+	the data for clustering
+	* data/clustering/neighborhood.csv: the combination of all-concor
+	and all-none.  Filter out the appropriate columns by using
+	clusterid=0 to get the unclustered results.
+	
+2007-10-03  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/sas/clustering.sas: updated code
+	and removed some of the evolution specific elements
+
+2007-05-28  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/sas/clustering.lst: fixed so the
+	script works again.  Yeah, that's always nice.
+
+2007-04-19  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/profiles/profiles.csv: probably should not have added the data file
+	right here, but whatever.
+
+2007-04-18  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/profiles/profiles.r: first shot at R data processing
+
+	* src/profiles/profiles.py: actually works now
+	
+	* src/profiles/profiles.py: finally implemented some of the EI index stuff
+	
+	* src/network/__init__.py: new file
+	* src/network/methods/__init__.py: can now use command "import network.methods"
+	
+	* src/network/methods/methods.py
+	(calculateEIIndex): added calculateEIIndex function.
+	(BuildBugzillaPersonPersonNetwork): now creates an XDiGraph
+	(BuildSourcePersonPersonNetwork): now creates an XDiGraph
+	(BuildMailPersonPersonNetwork): now creates an XDiGraph
+	* src/network/methods/tests.py
+	(testNetworkMethods): new set of test suites for EIIndex and related functions.
+	 
+2007-04-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/methods/buildEpiphanyNetworks.py: simple script to extract
+	networks from the data for epiphany.
+
+	* src/network/methods/methods.py: added parameter commitFilter to source code
+	networks. The argument is a callable function that is passed over each of the
+	commits in the commit set. If the filter returns false, than that commit is
+	skipped.
+	
+	* src/network/methods/methods.py: added parameter filter to source code networks.
+	The argument is a callable function that is passed over each of the files in the
+	commit set. If the filter returns false, then that file is skipped.
+	
+2007-04-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/bugzillaobjects.py
+	(Bug): changed so votes is now an IntCol, this should fix some of the problems I
+	was having.
+	(BugVotes): created new object.
+	(Profile): added getPrimaryPersonId method
+	* src/network/methods/methods.py: added in methods for building bugzilla
+	networks
+	* srt/network/methods/tests.py: methods for testing bugzilla based networks
+	
+2007-04-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/methods/tests.py
+	(TestSourceNetwork): new class for testing the creation of source code networks
+	* src/network/methods/methods.py
+	(buildSourcePersonPersonNetwork): new set of methods to build a person person
+	network from source code for a project based methods of clique, direct, or
+	directClique
+	* src/dbobjects.py: added getPrimaryPerson and getPrimaryPersonId to User object
+	
+	* src/dbobjects.py: make it quit complaining about deprecation
+	* src/bugzillaobjects.py: quit complaining about deprecation
+	* src/personobjects.py: quit complaining about deprecation
+	* src/network/methods/tests.py: more work to improve the test harness
+	
+	* src/network/methods/tests.py: actually creates an SQLite database to do
+	the tests off of.
+	* src/network/methods/methods.py: rest of network creation methods flushed out
+	* src/dbobjects.py: changed some of the default elements to better reflect database
+	
+2007-04-13  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/methods: new subproject to look at network creation
+	* src/dbobjects.py: some changes to get around deprection with sqlobject
+
+2007-02-17  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/liwcjr/processing.r: r script to process data
+	* src/liwcjr/liwcjr.py: changed some stuff so the column headings work better
+
+	* sql/maillists.sql: added mail_message_null_parent_id for
+	messages that need to be reparented
+
+	* src/liwcjr: new system affectionately called liwcjr that
+	provides for the analysis of messages very similar to what LIWC
+	does
+
+2007-02-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/mail/loadMailLists.py (removeDupes): added code to remove duplicates
+	* sql/maillists.sql: added index to mail_message_reference
+
+2007-02-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/mail/loadMailLists.py: now links both from and to in email
+	messages.  Properly reparents messages.
+
+2007-02-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/mail/loadMailLists.py: reparents messages and lists.
+
+2007-02-12  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/dbobjects.py (MailReference): added MailReference object
+	* sql/maillists.sql: added in mail_message_reference table
+	* src/mail/loadMailLists.py: cleaned up program from old rotting
+	source code.  Updated so it can just scan all of the files in a
+	directory.  It doesn't worry about the same list issues anymore.
+
+2007-02-09  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/profiles/profiles.py: added calculation of gini coeffecients
+
+	* src/mail/mailscraper.py (pull_all_gnome): added --allgnome flag
+	to have it attempt to download every file from GNOME.org
+
+2006-12-13  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/profiles/profiles.py: lots of changes
+	to improve the script.  Now outputs a bevy of useful information.
+	* src/bugzillaobjects.py (product): added new ProductProject class
+	* sql/bugzilla_additional.sql: added in stuff for product_project
+	table to make better references
+
+	* src/bugzillaobjects.py (BugComment): added the BugComment class
+	to represent comments on bugs.
+	* src/profiles/profiles.py: more work at getting useful data for
+	each of the users
+
+2006-12-12  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/profiles/profiles.py: new file
+
+2006-12-07  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/guess/clustering/timeProcessing.py: added stats
+	for entire project now
+	* data/clustering/all-concor.csv: updated
+	* src/network/guess/clustering/sas/clustering.sas: performed
+	analysis of MLM and fixed some old problems with the new data
+
+	* src/network/guess/clustering/timeProcessing.py: appears to
+	finally work...YAY!  About frickin time.
+	* data/clustering/all-concor.csv: looks good now
+
+2006-12-06  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/sas/clustering.sas: added columns
+	for new project manufacturer and distributor users
+
+	* src/network/guess/clustering/timeProcessing.py: lots of changes,
+	lets hope this is it to get the stuff working
+
+2006-12-05  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* data/clustering/all-concor.csv: added file with all the concor
+	data
+	* src/network/guess/clustering/sas/clustering.sas: added new input
+	columns
+	* src/network/guess/clustering/timeProcessing.py: updated to track
+	new users in each of the categories
+
+2006-11-30  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/timeProcessing.py (ProjectUsers):
+	created a new class to store information on the users involved
+	with the project over time 
+
+2006-11-12  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/stats/devLength.py:  new file that counts the length of time
+	a group of developers has been associated with their projects.
+
+2006-11-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/timeProcessing.py (processProject):
+	added a none grouping algorithm to get the overall project
+	statistics.
+	* src/network/guess/clustering/runall.sh,run.sh: added ability to
+	pass any addition arg to have it not run all the very slow ORA
+	stuff again
+
+2006-11-01  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/stats/projectGrowth.py: alter the figure size to 10,5 so
+	they're widescreen 
+
+2006-10-26  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/stats/projectGrowth.py (buildData): added support for
+	creating a graph of the number of commits
+
+2006-10-25  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/stats/projectGrowth.py: actually generates a plot now
+
+	* src/stats/projectGrowth.py: new program that will generate
+	graphs showing the growth of the community
+
+2006-10-24  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/zipDat.sh: new script to compress data
+	* src/network/allSiena.sh: call zipDat.sh after creating the data
+
+2006-10-23  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/allSiena.sh: add in debugging
+	* src/network/sienaNetworks.py: add in --onlyagents flag to select only agents
+	* src/network/exportSienaNetworks: remove non-agents
+	* src/network/mergeSienaNetworks.py: new file that merges networks together
+
+2006-09-27  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/gnome_gedit.xml: removed
+	* src/network/guess/clustering/timeProcessing.py: cleaned up
+	* src/network/guess/clustering/gnome_gedit-pre.xml: removed
+	* src/network/guess/clustering/matrixPostProc.py: cleaned up
+	* src/network/guess/clustering/sas/clustering.sas: updated for current date
+	* src/network/guess/clustering/gnome_evolution.xml: removed
+	* src/network/guess/clustering/base_ora.xml: new for run.sh
+	* src/network/guess/clustering/gnome_evolution-pre.xml: removed
+	* src/network/guess/clustering/run.sh: updated to one step operation
+	* src/network/guess/clustering/base_ora-pre.xml: new for run.sh
+	* src/personobjects.py: fixed bug
+	* data/clustering/gnome_evolution-concor.csv: updated data
+	* data/clustering/gnome_evolution-newman.csv: updated data
+
+	* src/personobjects.py (Corporation): added in distributor and
+	manufacturer properties
+	* sql/person.sql (corporation): added in prop_distributor and
+	prop_manufacturer fields
+
+2006-09-21  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/sas/clustering.sas: final changes
+	for meeting with Bob and Jim
+
+2006-09-20  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/sas/clustering.sas: updates that
+	check to see if there is multicolinearity.
+
+2006-09-19  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/timeProcessing.py
+	(CorporationElement): new class to support the manipulation of
+	corporate information
+
+2006-09-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/timeProcessing.py(dumpsas): fixed output issue
+
+	* src/network/guess/clustering/timeProcessing.py (processProject):
+	modifications to make it store information on cross cluster users
+
+2006-09-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* data/clustering: new directory with data from clustering analysis
+
+	* src/network/guess/clustering/timeProcessing.py: changes to
+	generate records for SAS
+
+2006-09-06  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/guess/clustering/timeProcessing.py: now records the
+	file breakdown by volunteers and commercial users
+
+	* src/network/guess/clustering/timeProcessing.py: new
+	file that does over time processing of groupings
+
+2006-09-05  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/exportSienaNetworks.py: make it not process empty networks
+
+	* src/network/allSiena.sh: now does 4 month chunks of networks
+
+2006-08-31  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/clustering/run.sh: new helper script to run
+	all the stuff for a project
+	* src/network/guess/clustering/gnome_gedit.xml: ora script for
+	gedit
+	* src/network/guess/cluserting/gnome_gedit-pre.xml: ora script for
+	gedit
+
+	* src/network/guess/clustering/matrixPostProc.py: new file that
+	does all sorts of fun post processing on the networks, including
+	adding more data to the block diagrams and building CSV files
+	based on the groupings.
+
+	* src/network/guess/matrixGenerator.sh: debugging information
+	* src/network/guess/matrixDependency.py (buildDynetML): new code
+	to track the number of corporate and volunteer users for each file
+
+2006-08-21  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/sienaNetworks.py: prefaced the names of graphs
+	with code and mail
+
+2006-08-18  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/exportSienaNetworks.py: greatly simplified, now
+	removes isolates and dumps out the raw networks.
+
+2006-08-17  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/allSiena.sh: add in gnome/beagle and binary opt
+	* src/network/sienaNetworks.py: add in --binary option
+
+	* src/network/exportSienaNetworks.py: script now works for
+	exporting all the dynetml networks to raw networks
+	* src/network/allSiena.sh: updated to process scripts
+
+2006-08-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/sienaNetworks.py: make sure that all agents are
+	properly sorted by id
+
+	* src/network/sienaNetworks.py (buildSourceCodeNetwork): fixed
+	error where program would crash if a user was not attached to a
+	person.  Now it just ignores it. 
+
+2006-08-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/dbobjects.py (MailMessage, MailRecipient): added email
+	foreign key
+	* src/network/allSiena.sh: added script to run everything
+	* src/network/sienaNetworks.py (buildEmailNetwork):
+	appears to actually generate the email networks now
+
+	* src/network/sienaNetworks.py (buildSourceCodeNetwork):
+	actually builds both networks now
+	
+	* src/network/sienaNetworks.py (buildSourceCodeNetwork):
+	modifications so it builds the start of the networks
+
+	* src/dbobjects.py (FileClass): added name to be alternateID
+
+2006-08-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/guess/matrixGenerator.sh: new file to run
+	matrixDependency many times over and over
+
+	* src/network/guess/matrixDependency.py (buildDynetML): typo fix
+
+	* src/network/guess/plots.tmpl,genfun.sh: files useful for making
+	some graphs from all this messy data
+
+	* src/network/guess/matrixDependency.py: added --onlysource flag
+	to have it only work on source code stuff, instead of all files.
+
+2006-08-04  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/util/classProfile.py: various bug fixes to output
+
+2006-08-01  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/guessClustering.py: new file to calculate the
+	clustering coefficient for a project
+
+	* sql/maillists.sql (mail_message, mail_message_to): added columns
+	for email_address_id
+	* src/network/guess/gnomeGrapher.py: new file imported from my
+	personal directory.  This is meant to be executed directly by
+	Guess
+	* src/network/guess/matrixDependency.py: optons to filter data,
+	added in matrix multiplication internal, logging
+
+2006-07-31  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/guess/guessGrapher.py: new file that generates a
+	database suitable for graphing in guess for a particular project
+	* src/network/guess/matrixDependency.py: new file that generates
+	the matrix of dependencies for a set of files
+
+2006-07-19  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/util/classProfile.py: new class for profiling the classes of
+	files
+	* src/util/personProfile.sas: profile the persons in SAS
+
+2006-07-18  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* sql/cvsminer.sql: added in file_class_id on file
+	* src/util/fileClassLink.py: links files to their class based on
+	regular expressions
+	* src/dbobjects.py (FileClassRegex): renamed from FileRegex.  No
+	longer deprecated.
+
+	* src/dbobjects.py (FileClass): updated for parent classes
+	* sql/cvsminer.sql: lots of new file classes and regexes
+
+2006-07-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/web/web.py (Reports): added corporatePersonm,
+	nonCorporatePersons, bugzillaPersons, and bugzillalessPersons
+
+	* src/web/xslt/cvsminer.xsl: added code for personlists
+	* src/util/userCorporationLink.py (userCorporationLink): fixed bug
+	where it would link some corporations twice
+
+	* src/util/userCorporationLink.py: new file to link users to
+	corporations by email address
+
+	* sql/person.sql: added mandriva domains
+
+2006-06-28  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/personobjects.py (Person, Corporation, PersonCorporation):
+	modifications for corporation stuff 
+	* sql/person.sql: added in stuff for corporation
+
+2006-06-27  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/web/web.py (needsLogin): fixed issue with __doc__ not
+	getting passed through decorator
+
+2006-06-12  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/web/web.py (showFile): fixed error where not all paths were
+	removed
+
+	* src/web/web.py (showFile): prettified web output
+
+	* src/web/web.py (showFile): now able to rudimentary view files
+
+	* src/web/web.py (addPerson): added option returnPag eparameter
+
+	* src/web/web.py (showCommit): stuff to show a single commit
+
+	* src/web/xslt/cvsminer.xsl: new stuff for commitview
+
+2006-06-11  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/web/web.py: added attachedUsers report
+
+	* src/web/web.py: added showCommits method to show commits for
+	a user on a project
+	* src/web/xslt/cvsminer.xsl: added commitsview template
+
+2006-06-09  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/web/web.py: added new report to flag users that need work
+	* sql/persons.sql: added needs_work column to person
+	* src/personobjects.py: added needsWork property to Person
+	
+	* src/web/web.py (needsLogin): fixed it so parameters on the hook
+	are now converted to proper form parameters
+
+2006-06-08  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/web/web/py (connectWrapper): new function for connecting to
+	database in threaded environment
+	* src/dbobjects.py (setConnection): new function to set connection
+	for all objects
+
+	* src/web/web.py (addEmailPerson): now possible to add persons
+	email addresses to them if known 
+
+	* src/bugzillaobjects.py (Profile): added persons element
+
+	* src/web/web.py (addPerson): fixed a bug where aliases weren't
+	linked, added in login stuff
+	
+
+2006-06-07  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/web/web.py: suggesty goodness
+	* src/web/css/suggest.css: suggesty goodness
+	* src/web/default.conf: suggesty goodness
+	* src/web/xslt/cvsminer.xsl: suggesty goodness
+	* src/web/js: suggesty goodness
+	* src/web/js/autosuggest1.js: suggesty goodness
+	* src/web/js/suggestions1.js: suggesty goodness
+
+2006-06-07  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/web/web/py: more stuff for showing information on profiles
+	and user accounts
+	* src/web/xslt/cvsminer.xsl: corresponding xslt upgrades
+	
+	* sql/maillists.sql: added index on mail_message(mail_file_archive_id)
+	* src/web/web.py:  initial creation of web interface
+	* src/web/xslt/cvsminer.xsl: initial xslt creation
+	* src/web/default.conf: initial configuration creation
+
+2006-05-25  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/stats/centralTendencyUserProjects.py: now builds graphs for
+	number of users involved with project when leaving
+
+	* src/stats/centralTendency.py: some small optimizations in
+	getProjectDurations - use max instead of orderBy/limit
+	(getProjectDurations): added in devRecentCommits/Projects and
+	eolDevRecentCommits/Projects
+	* src/stats/centralTendencyUserProjects.py: builds pretty graphs
+	out of the centralTendencyUserProjects.csv file
+
+2006-05-24  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/stats/centralTendency.py (getProjectDurations): new file to
+	get at the central tendencies of users in term of their lifecycle
+	of activity.
+
+2006-05-08  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/cvsSorter.py: new file that takes the output of the
+	weekly CVS files and gets the top projects and then makes nice
+	little graphs from the data.
+
+2006-05-06  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/agentFileNetwork.py (buildData): bunch of hacks to
+	have it only generate data for a single project - we'll see if
+	this works.
+
+2006-05-05  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/network/agentFileNetwork.py: new program that builds
+	networks based on shared file commits 
+
+2006-05-04  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/stats/lifecycle.py (buildData): now saves commits/day column
+	* src/stats/csvSorter.py: new file to sort CSV data on an
+	arbitrary header column 
+
+2006-05-03  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/stats/lifecycle.py: new file for lifecycle analysis of devs
+	* src/stats/plots.sh: shell script to make lots of plots from
+	lifecycle.py output
+
+	* src/stats/devStats.py (buildData): lots of changes to spit out a
+	bunch of statistics at the end of the report.  Right now it just
+	differentiates between active and inactive users
+
+2006-05-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/network/cvsNetwork.py: builds a network based on CVS commits
+	* src/network/dl2gwt.py: converts dl files to gwt files for GeoDA
+	* src/network/joiner.py: joins together several CSV files
+
+	* src/network/agentNetwork.py: builds incremental networks of the
+	agents based on whether or not they worked on the same project
+
+	* src/stats/devStats.py: new file for overall stats
+
+2006-03-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/mlm.sas: changes to examine differing windowing
+	strategies around the data  Looks like 8 week chunks to 16 is the winner.
+
+2006-03-13  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/mlm.sas: added code for exponential decay
+
+2006-03-09  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/mlm.sas: changed graphs to 30 weeks out
+	* docs/cscw06/figures/allRegressionsWeekSince*.eps: ditto
+
+	* docs/cscw06/figures/allRegresionsWeekSinceFl?M.eps: new figures
+	that show regressions for individual conferences.
+	* srs/analysis/mlm/mlm.sas: updated code to generate new graphs
+
+	* src/analysis/mlm/mlm.sas: added CONFID variable which records
+	the ID number of the last conference.  Updated graphing formulas.
+
+	* src/analysis/mlm/personPeriod.py: updated so it records
+	conference id in the data set.
+
+2006-03-08  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* docs/cscw06/cscw06.tex: integration of some of Jim's comments
+	* docs/cscw06/figures: updated figures with big bold red lines to
+	show the mean level.  I think these means make some sense...
+
+	* src/analysis/mlm/mlm.sas: now draws lines for mean values too
+
+	* docs/cscw06/cscw06.tex: added in some figures, worked on
+	reformatting some tables
+
+	* src/analysis/mlm/mlm.sas: fixed so bugs and mail models use
+	mailweek and bugsweek respsectively
+
+	* docs/cscw06/figures: new figures for each regression
+	* src/analysis/mlm/mlm.sas: more work on figures
+
+2006-03-07  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* docs/cscw06/cscw06.tex: some small text cleanups
+	* docs/cscw06/Makefile: builds eps->pdf figures, properly renames
+	files
+
+	* docs/cscw06/figures: new path for figures
+
+	* src/analysis/mlm/mlm.sas: lots of new charting stuff to plot
+	regression lines.  Corrected MLMs to take into account CVS Week,
+	does not substantially change the results.
+
+	* docs/cscw06/cscw06.tex: auto insert date/rev
+	* docs/cscw06/Makefile: create a file with revision and authorname
+
+2006-03-06  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* docs/cscw06/cscw06.tex: updated some, sent out again
+
+	* docs/cscw06/cscw06.tex: sync changes between machines
+
+	* src/analysis/mlm/mlm.sas: added simple regression models, fixed
+	some data set issues
+
+	* docs/cscw06/cscw06.tex: more cleaning up of hypothesis
+	background, additional references coded.  Time for lunch.
+
+	* docs/cscw06/cscw06.tex: first stab at an abstract, formatting
+	updates.
+
+	* docs/cscw06/cscw06.tex: updates to make it fit into the
+	proceedings template
+	* docs/cscw06/sig-alternate.cls: class file for CSCW proceedings
+	
+	* docs/cscw06/cscw06.tex: more work
+
+2006-03-05  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* docs/cscw06/cscw06.tex: starting to flush out some of the stuff
+	regarding the results 
+
+2006-03-04  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* docs/cscw06/cscw06.tex: cleaning up and writing new paper
+
+	* src/analysis/mlm/mlm.sas: updated bug analysis to use bug data set
+
+	* src/analysis/mlm/mlm.sas: updated so mail analysis now uses the
+	mail data set.
+
+	* docs/cscw06: lots of restructuring to make a sane build
+	environment. 
+
+	* docs/cscw06/cscw06.tex: initial shell import from last semester
+	* docs/cscw06/Makefile: initial commit
+
+2006-03-03  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* docs: preliminary skeleton getting ready to import docs
+
+	* src/analysis/mlm/mlm.sas: created projectsize, projectsizemail,
+	and projectsizebugs as standardized sums of predictor variables.
+	Found that we see statistical differences for projects on cvs
+	users and mail, but nothing on bugs.  Believe it or not, this is
+	REALLY GOOD!  Yay.
+
+	* src/analysis/mlm/mlm.sas: preliminary work on standardizing
+	metrics for project size.  Updated regressions to take advantage
+	of this too.
+
+2006-03-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/mlm.sas: added in lag measures
+	* data/projectPeriod.txt: updated again
+
+	* src/analysis/mlm/personPeriod.py: fixes for computing the
+	current week of a project
+
+	* src/analysis/mlm/mlm.sas: cleaned up large amounts of the code
+	in the file; properly comment stuff; added in some preliminary PCA
+	type stuff
+
+	* data/projectPeriod.txt: updated for changeset [163].  File is now stored
+	as a binary file because every line gets changed on each run anyway.
+
+	* src/analysis/mlm/mlm.sas: now gets total commits too
+	* src/analysis/mlm/personPeriod.py: forgot to have it track total commits 
+
+	* data/projectPeriod.txt: updated with new data from changeset
+	[160]
+
+	* src/analysis/mlm/personPeriod.py: fixed error where newline was
+	not output after each project
+
+2006-03-01  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/mlm/mlm.sas: corresponding changes to load data
+	* src/analysis/mlm/personPeriod.py: now properly counts that
+	number users, messages, threads, and bugs that occur before the
+	data set analysis begins.
+
+	* src/analysis/mlm/mlm.sas: create new dataset gnomenoprecvs which
+	only has weeks where we have CVS data for a project.  Added in
+	some new multi-level models to understand what is going on.
+
+	* src/analysis/mlm/mlm.sas: updated for new columns
+	* data/projectPeriod.txt: updated for new output from
+	personPeriod.py
+	* src/analysis/mlm/personPeriod.py: now provides additional
+	information on project history - number of weeks since traffic was
+	found, a small lookback window, and a all time lookback window
+
+2006-02-28  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/mlm.sas: now creates mutiple data sets, gnome
+	and gnomenopre where all rows before we have all three
+	communication mediums are eliminated 
+
+	* data/projectPeriod.txt: updated data file for newest run
+
+	* src/analysis/mlm/personPeriod.py: huge changes to give some
+	stats on previous time periods and indicate if a project has had a
+	certain type of activity up to that point in time.
+	* src/analysis/mlm/firstActivity.py: correction for time skew
+	messups on the CVS server.  Now says that the first communication
+	must be after July 1, 1997
+	* src/analysis/mlm/mlm.sas: updated for new columns
+
+2006-02-27  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/personPeriod.py (ProjectInfo): now fetches
+	the first date of activity for each communication medium
+
+2006-02-22  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/firstActivity.py: initial file creation, not
+	100% working yet 
+
+	* src/analysis/mlm/mlm.sas: added plotting, more conditional
+	linear groth model stuff.
+	
+	* src/analysis/mlm/mlm.sas: created conditional linear growth model
+
+2006-02-21  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/mlm/mlm.sas: initial creation of SAS file for analysis
+
+	* data/projectPeriod.txt: project-period level dataset from
+	personPeriod.py
+	* src/analysis/mlm/personPeriod.py: memory optimizations
+
+	* src/analysis/mlm/personPeriod.py: mailing list data now properly generated
+	* src/analysis/mlm/personPeriod.py: bugzilla data now properly generated
+	* src/analysis/mlm/personPeriod.py: CVS data now properly generated
+	* src/analysis/mlm/personPeriod.py: preliminary dataset generator
+
+2006-02-20  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* data/conference: various pieces of information for conferences
+	* src/analysis/mlm: new directory for multi-level modeling
+	tools
+
+2006-02-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/newUsers.py (processStudy): added distinguishing
+	measurements between featured and unfeatured projects
+
+2006-02-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/newUsers.py: optimize some SQL queries, all user
+	to specify whether or not to search for all time
+
+	* src/analysis/newUsersAggregate.py: new file to agggregate
+	results from newUsers.py
+
+2006-02-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/newUsers.py: prints number of samples for each conference
+	* src/analysis/newUsers.py: now generates aggregate statistics for
+	entire class across all elements.  Ignores points with no activity
+	before/after conference.
+
+	* src/analysis/longTime.py: new script to generate lots of
+	aggregate statistics from database
+
+2006-02-13  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/newUsers.py: massive refactoring of code, added
+	pair t-tests to results
+	* src/analysis/newUsers.sh: simple script to iterate over all the
+	settings for newUsers.py
+	* src/analysis/newUsers.py (processProjectBugs): actually
+	processes the bugs properly now 
+
+2006-02-12  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/analysis/newUsers.py: added in ability to get bug
+	information.  Removed matplotlib requirement.
+
+2006-02-11  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/newUsers.py: added ability to monitor CVS changes
+	too
+	* src/bugs/bugAnalysis.py: forgotten file
+	* src/util/userUnify.py: forgotten file that unifies CVS user ids
+	* src/dbobjects.py (MasterProject): added mailList attribute to
+	get the mailing lists a project operates on 
+	* src/analysis/newUsers.py: new program to evaluate new users
+	after a conference
+
+2006-01-25  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/mail/messageIdFix.py: now seems to work properly, added
+	--dups option to remove duplicates.
+
+2006-01-24  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/dbobjects.py (MailMessage): default parent is now None
+	* src/mail/timeAnalysis.py: new file for understanding the pattern
+	of commits over time
+	* src/mail/messageIdFix.py: new file to go through and clean up
+	the database for messages from mailing lists
+
+	* src/dbobjects.py (MailMessage): replyTo field default to None
+	* src/mail/loadMailLists.py: more changes to catch reply to addreses
+	* src/mail/loadMailLists.py: now truncates mail_message.message_id
+	if it hits a ';' character.  Eliminates many issues;
+
+2006-01-23  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/dbobjects.py (MailList): set project to have default of none
+	* src/mail/loadMailLists.py: removed requirement to issue a
+	project name for the mailing list.
+
+	* sql/maillists.sql: removed null constraint for project on
+	mailing_list
+	* src/dbobjects.py (MailList): allow project to be null for MailList
+
+2005-12-17  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/meanAnalysis.py (meanAnalysis): fixed new files,
+	added removed files
+	* src/dbobjects.py (name): added not none and alternate ID
+
+2005-12-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/meanAnalysis.py: lots more information on the bug
+	dispersion.  --window/-w flags actually work.
+
+	* src/analysis/newFiles.py (__main__): removed unused --filter option 
+	* src/analysis/meanAnalysis.py: new file that generates aggregate
+	statisticts for the 14 days before and after a conference.
+
+	* src/analysis/newFiles.py: added ability to average over a period
+	* src/analysis/eventAnalysis.py (oneChart): added ability to
+	average data over a symmetric period
+
+2005-12-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/newFiles.py: lots of new stuff for bugs analysis
+
+	* src/analysis/eventanalysis.py (oneChart): fix debugging
+	* src/analysis/newFiles.py: new file
+
+	* src/analysis/eventAnalysis.py: use Study.conferences
+	(processConference): new function to move some cruft out of __main__
+
+	* src/dbobjects.py (Study): link to Conference 
+	* sql/study.sql: added study_conference table
+
+	* src/analysis/eventAnalysis.py: added in newfiles option
+
+	* src/analysis/eventAnalysis.py: fixed logging name, changed
+	window to -20 to 60 days.  Added in --tables command line option.
+	Put in support for looking at only commits above a threshold level.
+
+	* src/analysis/rawAnalysis.py: analysis on raw data sets from
+	Larry
+
+	* src/analysis/eventAnalysis.py: merge in larry's changes
+
+	* src/analysis/commitHistogram.py: Simple file to create a
+	couple of graphs showing the distribution of commits for the
+	projects in a given study.
+
+2005-12-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/dbobjects.py (connect): added cache option so you can
+	sepcify the exact caching engine you wish to use.
+
+2005-12-13  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/analysis/eventAnalysis.py: added support for bugzilla
+	databases
+	* src/bugzillaobjects.py (bug): preliminary creation of Attachment
+	and BugActivity objects
+
+	* sql/bugzilla_additional.sql: set default for
+	bz_bugs_activity::bug_activity_id.
+
+	* src/analysis/eventAnalysis.py (__main__): now reads from study
+	table in the database.  Default study is F05-CSCW
+	* sql/study.sql: created study_name_idx
+	* src/dbobjects.py (Study): added in Study class
+
+2005-12-13  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+	* sql/study.sql: removed some trailing spaces
+
+2005-12-13  Larry Maccherone  <larrym@andrew.cmu.edu>
+	* src/analysis/eventAnalysis.py: used more efficient
+	dictionary.keys() to iterate over master projects
+
+2005-12-12  Larry Maccherone  <larrym@andrew.cmu.edu>
+	* src/analysis/eventAnalysis.py: new file -- creates charts for 
+	analysis of data surrounding events
+
+2005-12-09  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* sql/study.sql: new file -- maps projecs to studies
+
+2005-12-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/dbobjects.py (MasterProject): added mapping to products
+
+	* src/dbobjects.py (Conference): fixed mapping to presentations
+
+	* sql/bugzilla_additional.sql: update bz_bugs_activity to give
+	it a primary key and foreign key to bz_bugs so we can link the
+	data together
+
+2005-12-01  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/bugs/bugProductProject.py: documentation increases
+	* sql/bugzilla_additional.sql: Added product_id field to all of
+	the bugs to allow index searches that run a bit faster.  We now
+	have indexed links from master_product->bz_product->bz_bugs
+
+	* src/bugs/bugProductProject.py: new file maps products to projects
+	* sql/bugzilla_additional.sql: added in product_id column to
+	bz_products
+
+	* src/bugzillaobjects.py (Product): wrapper for bz_products table
+
+	* src/bugzillaobjects.py: new file for bugzilla related objects
+	* src/dbobjects.py: automatically imports bugzilla objects
+	* sql/bugzilla_additional.sql: fixed a few more types, moved table
+	name
+
+	* src/personobjects.py: created a related join to profile
+
+	* src/dbobjects.py: commented out all the old cruft related to bug settings
+	* src/personobjects.py (Person): added link to bugzillaProfiles
+	* sql/bugzilla_additional.sql: fixed typo in bz_profiles_person
+
+	* sql/bugzilla_additional.sql: new file to link up bugzilla users
+	to persons in our database
+	* src/bugTransfer.py: moved to src/bugs/bugTransfer.py to keep the
+	source code directory relatively clean.
+
+2005-11-30  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/bugTransfer.py: lots of changes to allow for good loading
+	of data from MySQL databases
+
+	* src/bugzilla.sql (bz_keywords): fixed bz_keywords_bug_id_idx
+	to be on bz_keywords(bug_id, keywordid)
+	(bz_longdescs): removed not null constraint from bug_when.  This
+	should be eligable for not null according to dump from MySQL,
+	but apparently some elements still contain null values
+
+	* src/bugTransfer.py (dump): fix start at point
+	* src/bugzilla.sql: remove misplaced unique constraint on
+	bz_cc_who_idx
+
+	* src/bugTransfer.py: new program to assist with migrating data
+	over from bugzilla
+	* sql/bugzilla.sql: fixed creation_ts and severity columns
+
+2005-11-29  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* sql/bugzilla.sql: new file for importing of bugzilla data
+
+	* src/conference/conferenceLoader.py (loadConferenceFile): fix
+	issue with not stripping conference and presentation names
+	properly
+
+2005-11-29  Larry Maccherone  <larrym@andrew.cmu.edu>
+	* src/findPersons.py: Handle names like "o'leary" properly in
+	strip punctuation.  I removed the regex to do this.  It might 
+	be a bit slower but it should be easier to modify and the speed
+	should not be significant for this call.
+
+2005-11-29  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/findPersons.py (PUNCTUATION_RE): it's amazing how missing a
+	little carat can screw up a regex so badly
+
+	* src/findPersons.py (connectPersonsToUsers): fix for odd case where
+	no possible names are created for an alias -- strange?
+
+	* src/findPersons.py (connectPersonsToUsers): fixed error in the
+	debugging output
+
+	* src/findPersons.py (mineMailMessage): use %s to force string
+	representation in debugging rather than + operator which
+	can cause program to fail.
+	(stripPunctuation): use regular expression
+	to strip punctuation out of strings.
+	(connectPersonsToUsers): optimization improvements, new logging
+	* src/personobjects.py (RecordSource): define _set_toolTimestamp
+	to be null.  It appears that Larry was trying to have it get the
+	date of the file it is executing it, however this does not seem to
+	work at all on Conway.  It continually complains that it can't
+	find the file even if it is in the same directory.
+
+2005-11-28  Larry Maccherone  <larrym@andrew.cmu.edu>
+	* src/findPersons.py: Added more reporting to help figure out
+	problems reported by Patrick.  Totally changed the way user and
+	person connections are made so that it will not make connections
+	unless there is only one viable candidate.  I still need to add
+	the UI elements to confirm these.  I also added statistics to
+	tell us what percentage of user names are connected to persons. 
+
+2005-11-28  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/findPersons.py (buildTryNames): fix ticket #12
+
+	* src/conference/conferenceLoader.py (loadConferenceFile): now
+	properly handles conference attendees with email addresses too
+	* src/personobjects.py (EmailAddress): added alternateID to email
+	field
+
+	* src/conference/conferenceLoader.py (loadConferenceFile): support
+	attendee tag to show who attended the conference
+	(loadConferenceFile): fix problem with null dates
+	(loadConferenceFile): fixed end of file issue where sometimes the
+	last record would be ignored if the file did not end with a blank
+	line
+	* src/dbobjects.py (Presentation): allow null for startDate and
+	stopDate
+
+	* src/conference/conferenceLoader.py (loadConferenceFile): now
+	properly sets if someone was a presenter or attendee.  
+	(loadUser) enahancments to interactive mode
+	* sql/person.sql (person): small changes to make it create person
+	table
+
+	* src/conference/conferenceLoader.py (loadUser): updated for
+	reverted changes in structure of person and alias
+
+	* sql/person.sql: made person.primary_alias not null and
+	alias.person_id nullable
+	* src/personobjects.py: changed to reflect modifications of
+	person.sql
+
+	* sql/cvsminer.sql: inserted code to make script exit unless you're
+	really sure you want to run it
+
+	* src/conference/confereceLoader.py renamed to
+	src/conference/conferenceLoader.py -- my bad
+
+	* src/conference/confereceLoader.py (loadConferenceFile): made
+	it actually bomb out on errors in dry run
+
+	* src/conference/confereceLoader.py (loadConferenceFile): added
+	ability to perform a dry run execution where the input file is
+	merely validated against existing system information.
+
+2005-11-26  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/personobjects.py (Person): set default of primaryAlias to null
+	* src/conference/confereceLoader.py (loadUser): changes to work
+	with Larry's new model of people and aliases
+	* sql/runOnce11-25.sql: remove circular dependencies
+
+	* sql/runOnce11-25.sql: fixed a typo
+
+2005-11-26  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/conference/confereceLoader.py: seems to work properly now
+	* src/dbobjects.py (Conference, Presentation): map to Person
+	instead of RealPerson
+
+2005-11-26  Larry Maccherone  <larrym@andrew.cmu.edu>
+	* sql/runOnce11-25.sql: creates alias table, copies names to alias 
+	table, drops name field from person table
+
+	* src/peronobjects.py: update to include changes to database including
+	magic field for name so existing code that relied upon it will not
+	be broken.  Note that code that directly talked to the name field
+	in the person table will be broken
+
+	* src/findPersons.py: first commit of unattended person finder.
+	Mines EmailAddress table for aliases and emailAddresses.
+	Mines User table for Person-User connections.  Note that these
+	are not validated.  However, in a sampling of about 20, 80% were
+	correct.  That means that 4 out of 20 were wrong.  Also, that
+	stat is for ones where it makes a match.  There are many for which
+	it does not make a match.
+
+	* sql/person.sql: updated to match new structure
+
+2005-11-23  Larry Maccherone  <larrym@andrew.cmu.edu>
+	* src/personobjects.py: changed the way that the currently running 
+	tool is captured for RecordSource
+
+2005-11-23  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* sql/conference.sql: added in missing permissions lines
+
+	* src/conference/confereceLoader.py: initial program skeleton
+	is created
+
+	* src/conference: scripts for everything related to conferences
+
+	* sql/conference.sql: updated code to match new schema for people
+
+2005-11-21  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* sql/person.sql: small formatting changes.  Added sequences for
+	each of the primary keys and made auto-increment.  Added permission
+	granting for each of the sequences
+
+	* src/datasetMaker.py: removed moldy file.  The last valid
+	version is at source:/trunk/src/datasetMaker.py#17 
+	* ChangeLog: work around Trac formatting bug
+
+	* src/couplingGrapher.py: removed moldy file last valid version at
+	source:/trunk/src/couplingGrapher.py#10 
+
+2005-11-18  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/maillists.sql: added permissions for larry and marcelo
+
+	* src/loadMailLists.py (loadFile): removed some debugging stuff
+	that was accidentally included
+
+	* sql/maillists.sql: added in_reply_to field for cases where the
+	reply is crosslisted or loaded out of order
+	* src/dbobjects.py (MailMessage): added replyTo field
+	* src/mail/loadMailLists.py (loadFile): added support for replyTo
+	field
+	* ChangeLog: fixed some errors in my previous changelog
+
+	* src/mail/loadMailLists.py (MailFileArchive, MailMessage): added
+	support for MailFileArchive objects. 
+	* src/dbobjects.py (startDate): added class MailFileArchive to map
+	to table mail_file_archive
+	* sql/maillists.sql: added table mail_file_archive to store what
+	file each mailing list message came from.  Allowed message_date on
+	a message to be null.
+
+
+2005-11-16  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/bugs/bugfetcher.py (fetchBugList): added path argument for
+	where to save the XML bug output
+
+	* src/bugs/loadLotsBugs.py: new file to automate the scraping and
+	loading of lots of bugs
+
+2005-11-15  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/bugs/bugloader.py: massive code cleanups and porting to use
+	the SQLObject interface instead 
+	* src/dbobjects.py (Bug): updated to point to master project,
+	removed improper notNone constraints
+
+	* sql/bugscraper.sql: changed bug to point to a master_project
+	and added in scripts to grant permissions to folks
+
+2005-11-14  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* src/bugs/bugfetcher.py: cleaned up code some more
+
+	* src/bugs/bugfetcher.py (spiderWrap): removed deprecated function
+	(spider): made it actually obey the status argument
+
+	* src/bugs/bugfetcher.py: massive amounts of code cleanup
+
+	* src/bugs: new path added
+	* src/bugs/bugfetcher.py: new filed added to download bugs from GNOME
+	* src/bugs/bugloader.py: new file added to load bugs into the
+	database.  Both of these files were moved over from the original
+	bugscraper project.
+
+2005-11-12  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+
+	* src/mail/loadMailLists.py: removed superfluous debugging
+
+	* src/mail/loadMailLists.py: more error checking on fields.  Closes
+	ticket #8.
+
+	* src/mail/loadMailLists.py: fixes some ofthe problems with fields
+	being too long.  Closes ticket #7.
+
+2005-11-11  Larry Maccherone <larrym@andrew.cmu.edu>
+      
+	* src/personobjects.py: first commit - used InheritableSQLObject
+	to automatically capture the source of any connection but
+	you can use the main classes (Person, PersonUser, and EmailAddress)
+	as you would any other SQLObject class.  The RecordSource magic
+	will occur behind the scenes except when you want to annotate
+	the record with a second source or notes.
+
+	* sql/person: first commit
+
+2005-11-10  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/mail/fastloader.py: new file for rapid loading of multiple
+	mailing lists at one time.
+
+	* src/mail/mailscraper.py: cleaned up code so it functions only as
+	a mail scraping program, not as a parsing program anymore.
+	Simplified the command line arguments drastically.
+	
+	* src/mail/loadMailLists.py: file moved
+	* src/mail/mailscraper.py: file added.  Original code was in
+	mailscraper project.  This file is used to scrape mail archives
+	down.  Then use mailloader.py to load them. 
+
+	* src/projectJoiner.py: now ensures that any master projects
+	selected are indeed part of the community.  However, it still lets
+	projects be a part of any community.  I'm not sure if that is a
+	bug or a feature.
+
+2005-11-08  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/projectJoiner.py: new file to join multiple projects
+	together as one project.
+
+2005-11-02  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+	* helpers: directory created and loadall.sh moved in there
+
+	* src/loadMailLists.py (__main__): fixed so it maps to a master
+	project instead of a standard project.
+	* sql/maillists.sql: fixed so mailing lists reflect to a master
+	project
+	* src/dbobjects.py: fixed so mailing lists reflect to a master
+	project
+
+	* src/dbobjects.py (Conference, Presentation): new classes to
+	store data for attendence at conferences 
+	* sql/conference.sql: new file for information on conference
+	attendees
+
+	* sql/maillists.sql: fixed typo on index mailing_list_product_idx
+
+	* src/loadMailLists.py (loadFile): now handles toName, fromName
+	and the links.  Leaves null if not applicable.
+
+2005-11-01  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* sql/maillists.sql (mail_message, mail_message_to): added column
+	to reflect the name of the person the message was addressed to
+
+	* src/loadMailLists.py (loadFile): now builds name lists, but
+	doesn't properly update them yet
+
+	* src/dbobjects.py (Community, MasterProject): new classes to
+	represent the new community and masterProject objects
+	(Project): updated to point to a masterProject
+
+	* sql/cvsminer.sql: created community and master_project tables.
+	Modified project table to point to master_project with a foreign
+	key which is not null.  This will default to an unknown project
+	for data currently in the database.  Please note: this means we'll
+	need to do some other work regarding CVSloader and that it is
+	probably going to be broken for a while.
+
+	created some more sequences indexes related to all this too.
+
+	* sql/cvsminer.sql (project, virtual_project): undid changes for
+	virtual project stuff
+
+	* src/dbobjects.py (MailRecipient, MailMessage): added toName and
+	fromName columns.  Also changed email to toEmail and fromEmail
+	respectively.
+
+2005-10-28  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/dbobjects.py (Project): added support for virtual projects
+	* sql/cvsminer.sql (project): added boolean column to indicate if
+	virtual
+	(virtual_project): added table to map between virtual and real
+	projects
+
+
+2005-10-26  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* xml/mapping.xml: sample name disambiguation mapping file
+
+	* src/dbobjects.py (File): renamed fileName->name
+	* src/dbobjects.py (User): renamed userName->name
+
+	* src/loadMailLists.py (createList): function removed, no longer
+	needed
+
+
+2005-10-25  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/loadMailLists.py (__main__): made it automatically build
+	database URI
+
+
+	* src/dbobjects.py: improved interface for mailing list messages
+	* src/loadMailLists.py (loadFile): Should be working now with the
+	new object oriented SQLObject interface
+	* src/dbobjects.py: improved interface for mailing list messages
+
+2005-10-24  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* sql/bugscraper.sql: added some more indexes
+
+	* sql/maillists.sql: file added to repository for completeness
+	* sql/bugscraper.sql: file added to repository for completeness
+
+2005-10-23  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/dbobjects.py: fixed definitions of _idSequence variables so
+	sequences are now properly used when creating elements.
+
+2005-10-18  Patrick Wagstrom  <pwagstro@andrew.cmu.edu>
+
+	* src/dbobjects.py: new file created 
+
+2005-09-27  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+	* sql/cvsminer.sql - added support for tags, removed modify date
+	* src/cvsminer.py - fixed line problems, added support for tags
+
+2005-08-04  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+	* data/blacklist.txt - created file for use in stripping out
+	non-code files
+	* src/datasetMaker.py - added --startdate and --stopdate flags
+	* src/networkGenerator - reads external blacklist file now, added
+	--startdate and --stopdate flags.  Moved code for database
+	connections out and into dbutil.py
+	* src/dbutil.py - new file, handles all of the database connections
+
+2005-08-02  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+	* src/cvsminer.py - mine_repository fixes for ticket #6.  Ditto for
+	creation of CVSFile.removeAttics function.
+
+2005-08-02  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+	* sql/cvsminer.sql - found a bug where file.file_name was left at
+	255 and cvs_commit.message_intro was changed to 1024.  Fixed.  Should
+	really close ticket #5.
+
+2005-08-02  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+	* src/cvsminer.py - add_file now warns if the filename is too long
+	and truncates it as appropriate
+	* sql/cvsminer.sql - changed file.file_name to varchar(1024) instead
+	of original varchar(255).  Fix for ticket #5.
+
+2005-08-02  Patrick Wagstrom <pwagstro@andrew.cmu.edu>
+
+	* sql/cvsminer.sql - changed columns in cvs_commit to have a message
+	and message_intro column.  Fix for ticket #4.
+	* src/cvsminer.py - get_cvs_commit modified to support changes to
+	cvs_commit table.
+	* src/cvsminer.py - CVSFile.__init__ - fixed bug where 'Attic' would
+	remain in some file names
+	* ChangeLog - created, should have been here a long time ago.
