@@ -404,6 +404,7 @@ class Person(SQLObject): #pylint: disable-msg=R0904
     class sqlmeta: #pylint: disable-msg=R0903,W0232,C0111,C0103
         table = "person"
         idName = "person_id"
+        idSequence = "record_source_id_seq"
     _inheritable = False
     primaryAlias = ForeignKey('Alias', dbName="primary_alias")
     aliases = MultipleJoin('Alias', joinColumn='person_id')
@@ -432,6 +433,7 @@ class Alias(SQLObject): #pylint: disable-msg=R0904
     class sqlmeta: #pylint: disable-msg=R0903,W0232,C0111,C0103
         table = "alias"
         idName = "alias_id"
+        idSequence = "alias_id_seq"
     _inheritable = False
     name = UnicodeCol(length=255, notNone=True)
     person = ForeignKey('Person', dbName='person_id', default=None)
@@ -452,6 +454,7 @@ class EmailAddress(SQLObject): #pylint: disable-msg=R0904
     class sqlmeta: #pylint: disable-msg=R0903,W0232,C0111,C0103
         table = "email_address"
         idName = "email_address_id"
+        idSequence = "record_source_id_seq"
     _inheritable = False
     email = UnicodeCol(length=255, alternateID=True)
     person = ForeignKey('Person', dbName='person_id', default=None)
