@@ -2,11 +2,15 @@
 """
 messageIdFix.py
 
-Fixes message ids in the database
+This script performs several useful functions on messages in the database
+
+1. removes duplicate messages
+2. fixes message reply-to headers so they have no semicolons
+3. finds messages that have no parent set and reparents them
 """
 
-__author__ = "Patrick Wagstrom"
-__copyright__ = "Copyright (c) 2006 Patrick Wagstrom"
+__author__ = "Patrick Wagstrom <patrick@wagstrom.net>"
+__copyright__ = "Copyright (c) 2006-2011 Patrick Wagstrom"
 __license__ = "GNU General Public License version 2 or layer"
 
 from dbobjects import *
@@ -14,7 +18,9 @@ import logging
 from optparse import OptionParser
 
 def removeDups():
-    # remove all the duplicate entries, not sure how these got there
+    """
+    Iterates over all messages in the database, removing duplicates
+    """
     mls = MailList.select()
     for ml in mls:
         mms = MailMessage.select(MailMessage.q.listID==ml.id)
@@ -78,7 +84,7 @@ if __name__ == "__main__":
 
     if options.dups:
         removeDups()
-        
+
     # now, go through and fix all the reply tos...yes, this is a pain
     messages = MailMessage.select("""mail_message.in_reply_to is not NULL and mail_message.message_parent is NULL""")
     log.info("%d potential messages to reparent", messages.count())
@@ -101,5 +107,5 @@ if __name__ == "__main__":
                 otherList = otherList + 1
             msg.parent = newParent
     log.info("%d messages reparented (%d same list, %d other list)", sameList + otherList, sameList, otherList)
-    
+ 
 

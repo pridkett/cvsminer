@@ -14,10 +14,14 @@ timeutil - from support SVN archive
 """
 
 __author__ = "Patrick Wagstrom"
-__copyright__ = "Copyright (c) 2005-2007 Patrick Wagstrom"
+__copyright__ = "Copyright (c) 2005-2011 Patrick Wagstrom"
 __license__ = "GNU General Public License version 2 or later"
 
+import sys
 import os
+sys.path.append(os.path.join(os.path.split(os.path.abspath(__file__))[0], os.path.pardir))
+sys.path.append(os.path.join(os.path.split(os.path.abspath(__file__))[0], os.path.pardir, "support"))
+
 import logging
 import sys
 from optparse import OptionParser
@@ -81,7 +85,7 @@ def removeDupes():
         else:
             currentDict[res[1]] = res[0]
             
-def random_string(len=40):
+def random_string(length=40):
     """Builds a random string comprised of letters and numbers.  Needed to give
     identification to some meessages that don't have proper identification
     """
@@ -91,7 +95,7 @@ def random_string(len=40):
     # The random starts out empty, then 40 random possible characters
     # are appended.
     random_string = ''
-    for i in range (40):
+    for i in range (length):
         random_string += random.choice (letters)
         
     # Return the random string.
@@ -207,10 +211,10 @@ def linkMessages():
         conn.commit()
         sqlhub.threadConnection = oldConn
         if ctr % 2500 == 0:
-            log.info("clearning cache")
+            log.info("clearing cache")
             oldConn.cache.clear()
 
-    # on to the next stage, where we try to link up the mail_mesage_to
+    # on to the next stage, where we try to link up the mail_message_to
     ctr = 0
     while True:
         oldConn = sqlhub.getConnection()
@@ -226,7 +230,7 @@ def linkMessages():
         conn.commit()
         sqlhub.threadConnection = oldConn
         if ctr % 2500 == 0:
-            log.info("clearning cache")
+            log.info("clearing cache")
             oldConn.cache.clear()
 
 def deList(it):
@@ -247,7 +251,7 @@ def deList(it):
     return str(it)
 
     
-def loadFile(filename, maillist, fromHack=False, purge=False):
+def loadFile(filename, maillist, fromHack=False, purge=False, purge_only=False):
     """Loads and archive of mailing list messages into the database. Right
     now this function does not handle running multiple times over the
     same mailing list.  That's an outsanding bug.
@@ -295,7 +299,9 @@ def loadFile(filename, maillist, fromHack=False, purge=False):
             archive = archive[0]
     else:
         archive = None
-
+    if purge_only:
+        log.info("purge only called, returning")
+        return 0
     # try to get the month from archive
     short = os.path.splitext(shortFN)
     if short[1] == '.gz':
@@ -346,7 +352,7 @@ def loadFile(filename, maillist, fromHack=False, purge=False):
         except:
             messageId = None
         if not messageId:
-            messageId = "::CVSMINER::-"+random_string(len=64)
+            messageId = "::CVSMINER::-"+random_string(length=64)
         # FIXME: messageID should be a little more robust in searching out
         # properly formatted messages
 
@@ -457,7 +463,7 @@ def get_list(masterproject, listname):
     If the list cannot be found, then it will be created
     
     @param masterproject: the name of the master project that owns the list (eg gnome/beagle)
-    @param listname: the name of the database (eg dashboard-hackers)
+    @param listname: the name of the mailing list (eg dashboard-hackers)
     @return: a dbobjects.MailList object for the list
     """
     mproject = MasterProject.select(MasterProject.q.name==masterproject)
@@ -499,6 +505,12 @@ if __name__ == "__main__":
     parser.add_option("--purge", dest="purge",
                       help="Purge old records from file",
                       default=False, action="store_true")
+    parser.add_option("--purge_only", dest="purge_only",
+                      help="Only purge records, do not reload archive",
+                      default=False, action="store_true")
+    parser.add_option("--nopurgeconfirm", dest="purge_confirm",
+                      help="Don't prompt for a purge confirmation",
+                      default=False, action="store_true")
     parser.add_option("--reparent", dest="reparent", default=False,
                       help="Reparent all messages", action="store_true")
     parser.add_option("--link", dest="linkMessages", default=False,
@@ -533,10 +545,16 @@ if __name__ == "__main__":
         sys.exit()
         
     maillist = get_list(options.project, options.listname)
-        
+    
+    if (options.purge or options.purge_only) and not options.purge_confirm:
+        confirm = raw_input("Confirm purge by typing 'yes':")
+        if confirm.lower() != 'yes':
+            log.error("You must type 'yes' to confirm a purge. Exiting")
+            sys.exit()
+ 
     nummsgs = 0
     for fn in args:
-        nummsgs = nummsgs + loadFile(fn, maillist=maillist, fromHack=options.fromhack, purge=options.purge)
+        nummsgs = nummsgs + loadFile(fn, maillist=maillist, fromHack=options.fromhack, purge=options.purge, purge_only=options.purge_only)
     print "total messages: ", nummsgs
 
     if options.removeDupes:

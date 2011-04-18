@@ -4,7 +4,7 @@ mailscraper.py
 
 This takes a set of mail archives, either specified as a set of
 archives on the command line or by name from a mailing list site,
-and processes all of the ocnnections in the system.
+and downloads the archives.
 
 unusual libraries required:
 

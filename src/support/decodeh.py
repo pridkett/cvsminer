@@ -256,6 +256,8 @@ def decode(bs, enc=None, encodings=ENCS, mdb=MDB, lossy=False):
     Raises RoundTripError when lossy=False and re-encoding the string
     is not equal to the input string. 
     """
+    if bs == None:
+        return bs
     s, enc, loses = decode_heuristically(bs, enc=enc, encodings=encodings, mdb=mdb)
     if not lossy and loses:
         raise RoundTripError("Data loss in decode/encode round trip")
