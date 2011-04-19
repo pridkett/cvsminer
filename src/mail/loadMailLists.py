@@ -535,9 +535,15 @@ if __name__ == "__main__":
     if options.linkMessages:
         linkMessages()
         print "linking!"
-        
+ 
+    if options.reparent:
+        reparentMessages()
+
     if not options.project:
-        log.error("Must specifiy --project")
+        if options.reparent or options.linkMessages:
+            log.info("No project specified, looks like we're done here")
+        else:
+            log.error("Must specifiy --project")
         sys.exit()
         
     if not options.listname:
@@ -560,6 +566,4 @@ if __name__ == "__main__":
     if options.removeDupes:
         removeDupes()
                      
-    if options.reparent:
-        reparentMessages()
-        
+       
